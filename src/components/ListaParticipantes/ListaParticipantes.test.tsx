@@ -7,9 +7,8 @@ import { useListaDeParticipantes } from "../../state/hook/useListaDeParticipante
 jest.mock('../../state/hook/useListaDeParticipantes', () => {
   return ({
     useListaDeParticipantes: jest.fn()
-  }
-  )
-})
+  })
+});
 
 describe('Uma lista vazia de participantes', () => {
   beforeEach(()=> {

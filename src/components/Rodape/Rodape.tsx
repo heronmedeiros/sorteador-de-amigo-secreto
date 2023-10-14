@@ -1,25 +1,26 @@
-import { useNavigate } from "react-router-dom";
-import { useListaDeParticipantes } from "../../state/hook/useListaDeParticipantes";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom"
+import { useListaDeParticipantes } from "../../state/hook/useListaDeParticipantes"
+
+import './Rodape.css'
+import { useSorteador } from "../../state/hook/useSorteador"
 
 const Rodape = () => {
 
-  const participantes = useListaDeParticipantes();
+    const participantes = useListaDeParticipantes()
 
-  const navigate = useNavigate();
+    const navegarPara = useNavigate();
 
-  const iniciar = () => {
-    navigate('/sorteio')
-  }
+    const sortear = useSorteador();
 
-  return (
-    <footer>
-      	<button
-          disabled={participantes.length < 3}
-          onClick={iniciar}
-        >Iniciar brincadeira</button>
-    </footer>
-  )
+    const iniciar = () => {
+        sortear();
+        navegarPara('/sorteio')
+    }
+
+    return (<footer className="rodape-configuracoes">
+        <button className="botao" disabled={participantes.length < 3} onClick={iniciar}>Iniciar brincadeira</button>
+        <img src="/imagens/sacolas.png" alt="Sacolas de compras" />
+    </footer>)
 }
 
-export default Rodape;
+export default Rodape

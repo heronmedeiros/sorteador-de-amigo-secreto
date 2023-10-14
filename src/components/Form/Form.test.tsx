@@ -114,7 +114,7 @@ describe('O comportamento do formulário', () => {
     //clicar no botão de submeter
     fireEvent.click(button);
 
-    let mensagemDeErro = screen.getByRole('alert');
+    let mensagemDeErro = screen.getByRole('alert') as HTMLElement;
 
     expect(mensagemDeErro).toBeInTheDocument();
     // espera N segundos'
@@ -122,7 +122,7 @@ describe('O comportamento do formulário', () => {
       jest.runAllTimers();
     });
 
-    mensagemDeErro = screen.queryByRole('alert');
+    mensagemDeErro = screen.queryByRole('alert') as HTMLElement;
     expect(mensagemDeErro).toBeNull();
   });
 })

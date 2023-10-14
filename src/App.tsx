@@ -1,13 +1,18 @@
-import { BrowserRouter, Route } from "react-router-dom";
-import { RecoilRoot } from "recoil";
-import Form from "./components/Form/Form";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import Configuracao from './pages/Configuracao';
+import Sorteio from './components/Sorteio';
 
 function App() {
   return (
     <BrowserRouter>
-    <RecoilRoot>
-    	<Route path="/" element={Form}/>
-    </RecoilRoot>
+      <RecoilRoot>
+        <Routes>
+          <Route path='/' element={<Configuracao />}/>
+          <Route path='/sorteio' element={<Sorteio />}/>
+        </Routes>
+      </RecoilRoot>
     </BrowserRouter>
   );
 }

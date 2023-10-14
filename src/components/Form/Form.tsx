@@ -1,35 +1,40 @@
-import { useRef, useState } from "react";
-import { useAdicionarParticipante } from "../../state/hook/useAdicionarParticipante";
-import { useMensagemDeErro } from "../../state/hook/useMensagemDeErro";
+import { useRef, useState } from "react"
+
+
+import './Form.css'
+import { useAdicionarParticipante } from "../../state/hook/useAdicionarParticipante"
+import { useMensagemDeErro } from "../../state/hook/useMensagemDeErro"
 
 const Form = () => {
-  const [nome, setNome] = useState('');
 
-  const inputRef = useRef<HTMLInputElement>(null);
-  const adicionarNaLista = useAdicionarParticipante();
+    const [nome, setNome] = useState('')
 
-  const mensagemDeErro = useMensagemDeErro();
+    const inputRef = useRef<HTMLInputElement>(null)
 
-  const adicionarPartipante = (evento : React.FormEvent<HTMLFormElement>) => {
-    evento.preventDefault();
-    adicionarNaLista(nome);
-    setNome('');
-    inputRef.current?.focus();
-  }
+    const adicionarNaLista = useAdicionarParticipante()
 
-  return (
-    <form onSubmit={adicionarPartipante}>
-      <input
-        type="text"
-        placeholder="Insira os nomes dos participantes"
-        value={nome}
-        onChange={evento => setNome(evento.target.value)}
-        ref={inputRef}
-      />
-      <button disabled={!nome}>Adicionar</button>
-      { mensagemDeErro && <p role="alert">{mensagemDeErro}</p> }
-    </form>
-  )
+    const mensagemDeErro = useMensagemDeErro()
+
+    const adicionarParticipante = (evento: React.FormEvent<HTMLFormElement>) => {
+        evento.preventDefault()
+        adicionarNaLista(nome)
+        setNome('')
+        inputRef.current?.focus()
+    }
+
+    return (<form onSubmit={adicionarParticipante}>
+        <div className="grupo-input-btn">
+            <input
+                ref={inputRef}
+                value={nome}
+                onChange={evento => setNome(evento.target.value)}
+                type="text"
+                placeholder="Insira os nomes dos participantes"
+            />
+            <button disabled={!nome}>Adicionar</button>
+        </div>
+        {mensagemDeErro && <p className="alerta erro" role="alert">{mensagemDeErro}</p>}
+    </form>)
 }
 
-export default Form;
+export default Form
